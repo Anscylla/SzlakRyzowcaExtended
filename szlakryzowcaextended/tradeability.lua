@@ -1,4 +1,4 @@
-local common = require("customskirmishtrails.common")
+local common = require("szlakryzowcaextended.common")
 local resources = common.resources
 local _, pTradeAbilityArray
 
@@ -20,7 +20,7 @@ function tradeability.setTradeable(goodsType, binary)
   end
   
   local addr = pTradeAbilityArray + (4 * resources[goodsType])
-  log(2, string.format("setTradeable: %s => %s (%s) @ 0x%X", goodsType, binary, binary, addr))
+  log(WARNING, string.format("setTradeable: %s => %s (%s) @ 0x%X", goodsType, binary, binary, addr))
   core.writeInteger(addr, binary)
 end
 
@@ -28,7 +28,7 @@ function tradeability.setTradeables(entry)
   for _, resource in ipairs(common.resources_array) do
     local v = entry[string.format("tradeable_%s", resource)]
     if v ~= nil then
-      log(2, string.format("tradeability: setting resource %s to %s", resource, v))
+      log(WARNING, string.format("tradeability: setting resource %s to %s", resource, v))
       tradeability.setTradeable(resource, v)  
     end
   end
@@ -40,7 +40,7 @@ function tradeability.getTradeable(goodsType)
   end
   
   local addr = pTradeAbilityArray + (4 * resources[goodsType])
-  log(2, string.format("getTradeable: %s @ 0x%X", goodsType, addr))
+  log(WARNING, string.format("getTradeable: %s @ 0x%X", goodsType, addr))
   return core.readInteger(addr)
 end
 

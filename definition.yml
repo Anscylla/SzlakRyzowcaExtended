@@ -1,6 +1,10 @@
-name: custom-skirmish-trails
-author: gynt
+meta:
+  version: 1.0.0
+name: SzlakRyzowcaExtended
+author: Anscylla
+version: 1.1.2
 type: module
-version: 1.2.6
 dependencies:
-  textResourceModifier: ">= 0.3.0" 
+  textResourceModifier: ^0.3.0
+  framework: ">=3.0.7"
+  frontend: ">=1.0.15"

@@ -2,36 +2,36 @@ meta:
   version: 1.0.0
 options:
 - category:
-  - Custom Skirmish Trails
+  - Szlak Ryzowca Extended
   name: extreme
   header: "First Edition Trail" # '{{extreme}}'
-  text: "Customize the first trail with a .csv file" # '{{extreme_descr}}'
+  text: "Podaj ścieżkę do pliku .csv" # '{{extreme_descr}}'
   display: FileInput
-  url: custom-skirmish-trails.firstedition.csv.path
+  url: SzlakRyzowcaExtended.firstedition.csv.path
   contents:
     generalizeExtensionPaths: true
     filter: files
     type: string
     value: ''
 - category:
-  - Custom Skirmish Trails
+  - Szlak Ryzowca Extended
   name: extreme
   header: "Warchest Trail" # '{{extreme}}'
-  text: "Customize the Warchest trail with a .csv file" # '{{extreme_descr}}'
+  text: "Podaj ścieżkę do pliku .csv" # '{{extreme_descr}}'
   display: FileInput
-  url: custom-skirmish-trails.warchest.csv.path
+  url: SzlakRyzowcaExtended.warchest.csv.path
   contents:
     generalizeExtensionPaths: true
     filter: files
     type: string
     value: ''
 - category:
-  - Custom Skirmish Trails
+  - Szlak Ryzowca Extended
   name: extreme
   header: "Extreme Trail" # '{{extreme}}'
-  text: "Customize the extreme trail with a .csv file" # '{{extreme_descr}}'
+  text: "Podaj ścieżkę do pliku .csv" # '{{extreme_descr}}'
   display: FileInput
-  url: custom-skirmish-trails.extremetrail.csv.path
+  url: SzlakRyzowcaExtended.extremetrail.csv.path
   contents:
     generalizeExtensionPaths: true
     filter: files
@@ -39,13 +39,13 @@ options:
     value: ''
 - category:
   - Developer
-  - Custom Skirmish Trails
+  - Szlak Ryzowca Extended
   name: extreme
   hasHeader: false
-  header: "Enable strict mode to check for csv errors" # '{{extreme}}'
-  text: "Which may result in error message boxes at game start" # '{{extreme_descr}}'
+  header: "Tryb sprawdzania zgodności CSV" # '{{extreme}}'
+  text: "Może powodować powiadomienia o błędach przy uruchomieniu gry" # '{{extreme_descr}}'
   display: UCP2Switch
-  url: custom-skirmish-trails.csv.strict_format
+  url: SzlakRyzowcaExtended.csv.strict_format
   contents:
     type: boolean
     value: false

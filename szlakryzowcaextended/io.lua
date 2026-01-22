@@ -2,7 +2,7 @@
 local ucp = ucp or {internal = {
   resolveAliasedPath = function(...) error("resolveAliasedPath not found, ucp lib not found") end,
 }}
-local csv = require("customskirmishtrails.vendor.lua-csv")
+local csv = require("szlakryzowcaextended.vendor.lua-csv")
 
 local strictness = "warning"
 
@@ -327,9 +327,9 @@ local function getContents(path)
   local handle, err = io.open(path,'rb')
   if handle == nil then error(debug.traceback(err)) end
   local contents = handle:read("*all")
-  log(2, string.format("raw csv contents\n%s", contents))
+  log(WARNING, string.format("raw csv contents\n%s", contents))
   -- if contents:sub(1, ("map_name"):len()) ~= "map_name" then
-  --   log(2, string.format("getContents: prefixing headers"))
+  --   log(WARNING, string.format("getContents: prefixing headers"))
   --    contents = prefixHeaders(contents)
   -- end
   handle:close()  
@@ -406,7 +406,7 @@ local function pvalidateInput(input, index)
 end
 
 local function readCSV(path, limit)
-  log(2, string.format("readCSV: %s", path))
+  log(WARNING, string.format("readCSV: %s", path))
   local contents = getContents(path)
   local c = csv.openstring(contents, {header = true, })
 

@@ -1,4 +1,4 @@
-local description = require("customskirmishtrails.description")
+local description = require("szlakryzowcaextended.description")
 
 local function setTextDescriptions(entry)
   description.setText(1, entry.text_description_line_01 or "")

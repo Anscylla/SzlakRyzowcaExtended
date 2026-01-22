@@ -1,13 +1,13 @@
-local memory = require("customskirmishtrails.memory")
+local memory = require("szlakryzowcaextended.memory")
 
-local common = require("customskirmishtrails.common")
+local common = require("szlakryzowcaextended.common")
 
 local function getStartGood(good)
   local g = common.resources[good]
   if g == nil then error(string.format("unknown good type: %s", good)) end
 
   local addr = memory.START_GOODS + (4*g)
-  log(2, string.format("getStartGood: %s @ %X", good,addr))
+  log(WARNING, string.format("getStartGood: %s @ %X", good,addr))
   return core.readInteger(addr)
 end
 
@@ -16,7 +16,7 @@ local function setStartGood(good, value)
   if g == nil then error(string.format("unknown good type: %s", good)) end
 
   local addr = memory.START_GOODS + (4*g)
-  log(2, string.format("setStartGood: %s @ %X: %s", good,addr, value))
+  log(WARNING, string.format("setStartGood: %s @ %X: %s", good,addr, value))
   core.writeInteger(addr, value)
 end
 

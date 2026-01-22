@@ -1,8 +1,8 @@
 local pFletcherDetour, fletcherDetourSize = core.AOBScan("B8 11 00 00 00 EB E4"), 5
 local pPoleTurnerDetour, poleturnerDetourSize = core.AOBScan("B8 13 00 00 00 66 89 84 37 A2 02 00 00"), 5
 
-local memory = require("customskirmishtrails.memory")
-local common = require("customskirmishtrails.common")
+local memory = require("szlakryzowcaextended.memory")
+local common = require("szlakryzowcaextended.common")
 
 local WEAPON_PRODUCIBLE_OFFSETS = {
   address = memory.WEAPON_PRODUCIBLE,
@@ -23,7 +23,7 @@ local function setWeaponProducible(weapon, value)
   local address = WEAPON_PRODUCIBLE_OFFSETS.address
   local offsets = WEAPON_PRODUCIBLE_OFFSETS.offsets
   local addr = address + offsets[weapon]
-  log(2, string.format("setWeaponProducible: %s @ %X: %s", weapon,addr, value))
+  log(WARNING, string.format("setWeaponProducible: %s @ %X: %s", weapon,addr, value))
   f(addr, value)
 end
 
@@ -42,7 +42,7 @@ local function getWeaponProducible(weapon, value)
   local offsets = WEAPON_PRODUCIBLE_OFFSETS.offsets
   local addr = address + offsets[weapon]
   local value = f(addr)
-  log(2, string.format("getWeaponProducible: %s @ %X: %s", weapon,addr, value))
+  log(WARNING, string.format("getWeaponProducible: %s @ %X: %s", weapon,addr, value))
   return value
 end
 
@@ -64,7 +64,7 @@ return {
         registers.EAX = common.resources.bow
       end
 
-      log(2, string.format("producibility: fletcher: %s (%s, %s)", registers.EAX, canBow, canCrossBow))
+      log(WARNING, string.format("producibility: fletcher: %s (%s, %s)", registers.EAX, canBow, canCrossBow))
 
       return registers
     end, pFletcherDetour, fletcherDetourSize)
@@ -84,7 +84,7 @@ return {
         registers.EAX = common.resources.spear
       end
 
-      log(2, string.format("producibility: poleturner: %s (%s, %s)", registers.EAX, canSpear, canPike))
+      log(WARNING, string.format("producibility: poleturner: %s (%s, %s)", registers.EAX, canSpear, canPike))
       
       return registers
     end, pPoleTurnerDetour, poleturnerDetourSize)

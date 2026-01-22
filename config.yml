@@ -1,0 +1,10 @@
+config-sparse:
+  modules:
+    textResourceModifier:
+      config: {}
+  plugins: {}
+  load-order:
+    - extension: textResourceModifier
+      version: 0.3.0
+meta:
+  version: 1.0.0

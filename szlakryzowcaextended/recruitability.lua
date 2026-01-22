@@ -1,4 +1,4 @@
-local memory = require("customskirmishtrails.memory")
+local memory = require("szlakryzowcaextended.memory")
 
 
 local EURO_RECRUITABLE_OFFSETS = {
@@ -25,14 +25,14 @@ local function getUnitRecruitable(unit)
   local euroOffset = EURO_RECRUITABLE_OFFSETS[unit]
   if euroOffset ~= nil then
     local addr = memory.EURO_RECRUITABLE + euroOffset
-    log(2, string.format("getUnitRecruitable: getting %s at %X", unit,  addr))
+    log(WARNING, string.format("getUnitRecruitable: getting %s at %X", unit,  addr))
     return core.readInteger(addr) == 1
   end
 
   local mercOffset = MERC_RECRUITABLE_OFFSETS[unit]
   if mercOffset ~= nil then
     local addr = memory.MERC_RECRUITABLE + mercOffset
-    log(2, string.format("getUnitRecruitable: getting %s at %X ", unit,  addr))
+    log(WARNING, string.format("getUnitRecruitable: getting %s at %X ", unit,  addr))
     return core.readInteger(addr) == 1
   end
 
@@ -50,7 +50,7 @@ local function setUnitRecruitable(unit, value)
   local euroOffset = EURO_RECRUITABLE_OFFSETS[unit]
   if euroOffset ~= nil then
     local addr = memory.EURO_RECRUITABLE + euroOffset
-    log(2, string.format("setUnitRecruitable: setting %s at %X to %s", unit,  addr, value))
+    log(WARNING, string.format("setUnitRecruitable: setting %s at %X to %s", unit,  addr, value))
     core.writeInteger(addr, value)
     return
   end
@@ -58,7 +58,7 @@ local function setUnitRecruitable(unit, value)
   local mercOffset = MERC_RECRUITABLE_OFFSETS[unit]
   if mercOffset ~= nil then
     local addr = memory.MERC_RECRUITABLE + mercOffset
-    log(2, string.format("setUnitRecruitable: setting %s at %X to %s", unit,  addr, value))
+    log(WARNING, string.format("setUnitRecruitable: setting %s at %X to %s", unit,  addr, value))
     core.writeInteger(addr, value)
     return
   end
