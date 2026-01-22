@@ -1,4 +1,4 @@
-# Custom Skirmish Trails
+# Custom Skirmish Trails but fucking fixed
 This extension enables custom skirmish trails, specified in .csv files.
 
 ## Possibilities

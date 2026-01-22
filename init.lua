@@ -88,26 +88,43 @@ end
 
 local function detourSwitchToMenu()
   core.detourCode(function(registers)
-    log(2, string.format("detour: SetupSkirmishMode: %s", ""))
+    local isTrail = core.readInteger(memory.IS_SKIRMISH_TRAIL) == 1
+
+    if not isTrail then
+      startgold.reset() -- tutaj resetujemy złoto przy powrocie do menu
+    end
+
     local trail, trailName, mission = fetchCurrentTrail()
     if trail ~= nil then
       local missions = REGISTRY[trailName]
       if missions == nil then
-        log(VERBOSE, string.format("No custom missions registered for trail name: %s", trailName))
+        log(VERBOSE, string.format(
+          "No custom missions registered for trail name: %s",
+          trailName
+        ))
         return registers
       end
 
       local entry = missions[mission]
-      if entry == nil then log(-1, string.format("skirmish trail (%s) entry is unexpectedly nil: %s", trailName, mission)) end
+      if entry == nil then
+        log(-1, string.format(
+          "skirmish trail (%s) entry is unexpectedly nil: %s",
+          trailName, mission
+        ))
+        return registers
+      end
       
       interface.commitTextDescription(entry)
       interface.commitStartGoldDisplay(entry)
-      
     else
-      log(2, "detourSwitchMenu: no text description to set")
+      log(2, "detourSwitchMenu: no trail active")
     end
+
+    return registers
   end, core.AOBScan("C7 ? ? ? ? ? ? ? ? ? ? E8 ? ? ? ? 5D C3"), 11)
 end
+
+
 
 return {
   enable = function(self, config)

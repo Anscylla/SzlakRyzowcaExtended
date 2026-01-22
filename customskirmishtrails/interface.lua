@@ -9,8 +9,12 @@ local startgold = require("customskirmishtrails.startgold")
 
 -- 
 local function setStartGold(value)
-  log(2, string.format("setStartGold: %s @ %X: %s", "gold",memory.START_GOLD, value))
-  core.writeInteger(memory.START_GOLD, value) -- check intesnity value validity
+  if type(value) ~= "number" then
+    log(-1, string.format("setStartGold: invalid value %s", tostring(value)))
+    return
+  end
+  log(2, string.format("setStartGold: %i @ %X", value, memory.START_GOLD))
+  core.writeInteger(memory.START_GOLD, value)
 end
 
 local PLAYER_MAPPING = {
@@ -163,5 +167,6 @@ return {
   commitTextDescription = commitTextDescription,
   commitStartGoldDisplay = commitStartGoldDisplay,
   setStartGoods = startgoods.setStartGoods,
+  setStartGold = setStartGold,
   STRING_ADDRESSES = STRING_ADDRESSES,
 }
